@@ -2,6 +2,7 @@
 const dino = document.querySelector('.dino');
 const fundoPagina = document.querySelector('.fundo')
 
+
 let position = 0;
 let estaPulando = false;
 
@@ -45,7 +46,7 @@ function pular() {
     }, 20); //executa a cada 20milisegundos
 };
 
-
+//funcao para criar e exibir os cactus por tempo e deforma aleatoria
 function criarCactos() {
     const cactos = document.createElement('div');
     let cactusPosicao = 1000;
@@ -64,16 +65,28 @@ function criarCactos() {
         }else if(cactusPosicao > 0 && cactusPosicao < 60 && position <60){
             clearInterval(intervaloEsquerda);
             document.body.innerHTML = '<h1 class="gameover"> Fim de jogo! </h1>'
+            document.body.innerHTML += '<button class="recomecar"> Jogar novamente</button>'
+            document.body.style = 'background-image: url(fundodiv.jpg);'
+
+            //funcao para recarregar a página e recomeçar o jogo 
+            var btn = document.querySelector(".recomecar");
+
+            btn.addEventListener("click", function() {
+            
+            location.reload();
+            
+            });
         }else {
             cactusPosicao -= 10;
             cactos.style.left = cactusPosicao + 'px';
+
         }
     }, 20)
 
     setTimeout(criarCactos, apareceRandomicamente)
 }
 
-criarCactos();
+// criarCactos();
 
 
 document.addEventListener('keyup', sobeTecla)
